@@ -54,22 +54,25 @@ if __name__=='__main__':
     cfile=lis[lis.index('-c')+1]
     dfile=lis[lis.index('-d')+1]
     ofile=lis[lis.index('-o')+1]
-    file=open(cfile)
-    shehui=file.readlines()
-    file.close()
-    file=open(dfile)
-    worker=file.readlines()
-    file.close()
-    s=makedi('shehui')
-    w=makedi('worker')
-    s.set_dict(shehui,'=')
-    shehui_dict=s.get_dict()
-    w.set_dict(worker,',')
-    work_dict=w.get_dict()
-    file=open(ofile,'w')
+    try:
+        file=open(cfile)
+        shehui=file.readlines()
+        file.close()
+        file=open(dfile)
+        worker=file.readlines()
+        file.close()
+        s=makedi('shehui')
+        w=makedi('worker')
+        s.set_dict(shehui,'=')
+        shehui_dict=s.get_dict()
+        w.set_dict(worker,',')
+        work_dict=w.get_dict()
+        file=open(ofile,'w')
+    except:
+        print('FileError\n')
     for key,value in work_dict.items():
         sb,rate,salary=calculate(int(value),shehui_dict)
-        message=key+','+value+','+str(sb)+','+str(rate)+','+str(salary)+'\n'
+        message=key+','+value+','+'{:.2f}'.format(sb)+','+'{:.2f}'.format(rate)+','+'{:.2f}'.format(salary)+'\n'
         file.write(message)
     file.close()
    
