@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% block title %}
+<h2>title:{{ file_value.title}} </h2>
+{% endblock %}
+{% block content %}
+<p> {{file_value.content}}</p>
+{% endblock %}
+{% block time %}
+<p> time:{{file_value.created_time}} </p>
+{% endblock %}
+
